@@ -1,0 +1,148 @@
+
+
+
+
+
+
+
+nombre = "Jean"		
+vida = 100
+armadura = 0
+rol = "Guerrero"
+
+eleven = Eleven(nombre, vida, armadura, rol)
+eleven.info()
+
+nombre2 = "Urbus"
+
+urbus = Urbus(nombre2, vida, armadura, rol)
+urbus.info()
+
+
+MAIN-
+	
+
+				if opc == 1:
+			os.system('cls')
+			jugador = "Eleven"
+			print("Elegiste a "+jugador)
+			print("Ahora elige tu arma")
+			arma = eleccion_armas(jugador)
+			eleccion_mostrar(jugador,arma)
+			break
+
+import personajes
+import os
+import time
+
+
+guerreros = ['Eleven','Hall','Urbus','Catris','Kale']
+armas = ['Espada','Hacha']
+
+
+def eleccion_personaje_verificacion():
+	opc = True
+	while opc == True:
+		try:
+			for j in range(1):
+				for element in guerreros:
+					print(j+1," ",element)
+					j =j+1	
+				return int(input("Elige un guerrero\n---->"))
+			opc = False
+		except ValueError:
+			os.system('cls')
+			print("Escribe el numero del personaje a elegir")	
+
+def eleccion_personaje():
+	loop = True
+	while loop == True:
+
+		opc = eleccion_personaje_verificacion()
+		#Sale un personaje elegido
+
+		if opc == 1:
+			jugador = "Eleven"
+			return jugador
+			break
+
+		elif opc == 2: 	# HALL
+			jugador = "Hall"
+			return jugador
+			break
+		
+		elif opc == 3:	# URBUS
+			jugador = "Urbus"
+			return jugador
+			break
+		
+		elif opc == 4:	# CATRIS
+			jugador = "Catris"
+			return jugador
+			break
+		
+		elif opc == 5:	# KALE
+			jugador = "Kale"
+			return jugador
+			break
+
+		else: 				# CONDICION	
+			os.system('cls')
+			print("Personaje no encontrado cole")		
+
+def eleccion_armas_verificacion():
+	opc = True 
+	while opc == True:
+		try:
+			for x in range(1):
+				for element in armas:
+					print(x+1,"",element)
+					x = x+1	
+			return	int(input("Elige tu arma\n"))	
+			opc= False
+		except ValueError: #SI DIGITA ALFABETO, ERROR
+			print("Elige el numero de arma que quieres")
+
+def eleccion_arma(): 
+	loop= True
+	#empezar = True
+
+	while loop == True: #ELECCION DE ARMA
+
+		opc = eleccion_armas_verificacion()
+
+		if opc == 1: #Espada
+			arma= "Espada"
+			loop = False
+			return arma
+
+		elif opc == 2: #Hacha
+			arma= "Hacha"
+			loop = False
+			return arma
+
+		else:
+			print("\nArma no encontrada cole\n")
+
+def eleccion_mostrar(jugador, arma):
+
+	print("Jugador = "+jugador)
+	print("Arma = "+arma)			
+
+
+if __name__ == '__main__':
+
+	print("-------Juego medieval xd-------\n")
+	#time.sleep(3.0)
+
+	#Seleccion de jugador
+	print("A continuación, elige el numero del personaje con el que quieres jugar\n")
+	jugador = eleccion_personaje()
+	print("\n"+jugador+" elegido"+"\n")
+
+	#Seleccion de arma
+	print("Ármate con una de estas poderosas\n")
+	arma = eleccion_arma()
+	print ("\n"+arma+" elegida")
+
+	#Mostrar información final			
