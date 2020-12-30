@@ -1,6 +1,43 @@
 
+			print(ataque_jugador)
+			if ataque_jugador >= 18:
+				frases = ["Golpe crítico", "Brutal", "Criticazo", "Buen golpe"]
+				frase_random = random.choice(frases)
+				daño_total = print("Daño:",str(ataque_jugador),"¡"+frase_random+"!")
+			else:
+				daño_total = print("Daño:",str(ataque_jugador))
 
+			vida_enemigo =  vida_enemigo - ataque_jugador	
 
+			if vida_enemigo < 1:
+				print(f"""
+					Vida del jugador: {vida_jugador}
+					Vida del enemigo: {vida_enemigo}
+					¡Haz ganado el combate!
+				 """)
+				break
+			elif vida_jugador > 1:
+				print ("ok")	
+			time.sleep(1.0)
+
+			print(ataque_enemigo)
+			if ataque_enemigo >= 14:
+				daño_total = print("Daño:",str(ataque_enemigo)+" critico del enemigo")
+			else:
+				daño_total = print("Daño:",str(ataque_enemigo))
+
+			vida_jugador =  vida_jugador - ataque_enemigo	
+
+			if vida_jugador <= 1:
+				print(f"""
+					Vida del jugador: {vida_jugador}
+					Vida del enemigo: {vida_enemigo}
+					¡Haz perdido el combate!
+				 """)
+				break
+			elif vida_enemigo > 1:
+				print("ok, pero enemigo")
+	
 
 
 
@@ -18,10 +55,8 @@ nombre2 = "Urbus"
 urbus = Urbus(nombre2, vida, armadura, rol)
 urbus.info()
 
-
 MAIN-
 	
-
 				if opc == 1:
 			os.system('cls')
 			jugador = "Eleven"
@@ -130,19 +165,53 @@ def eleccion_mostrar(jugador, arma):
 	print("Arma = "+arma)			
 
 
-if __name__ == '__main__':
+import os
+import os.path as path
 
-	print("-------Juego medieval xd-------\n")
-	#time.sleep(3.0)
+jugador = "eleven"
+def crear_partida():
+	try:
+		if (path.exists("eleven.txt")):
+			print("El archivo ya existe")
+		else:
+			partida = open(f"{jugador}.txt", "w")
+			partida.close()
+	except Exception as e:
+		print("Hubo un error al crear el archivo de texto")
+	
+def cargar_partida(jugador):
+	try:
+		if (path.exists(f"{jugador}.txt")):
+			partida = open(f"{jugador}.txt", "r")
+			for texto in partida.readlines():
+				if "nombre" in texto:
+					nombre = texto
+					print ("dakljdjkasdas"+nombre)
+				if "vida" in texto:
+					vida = texto
+					print("dkadjkaskda"+vida)
+				if "armadura" in texto:
+					armadura = texto
+					print("dkadjkdasdasaskda"+armadura)	
+				print (texto)
+			return nombre, vida, armadura	
+			partida.close() 	
+	except Exception as e:
+		print("Hubo un error al leer el archivo de texto")
 
-	#Seleccion de jugador
-	print("A continuación, elige el numero del personaje con el que quieres jugar\n")
-	jugador = eleccion_personaje()
-	print("\n"+jugador+" elegido"+"\n")
+def cargar_partida(jugador):
+	try:
+		if (path.exists(f"{jugador}.txt")):
+			partida = open(f"{jugador}.txt", "r")
+			buscar = ["nombre", "vida", "armadura"]
+			encontrados = []
+			for texto in partida.readlines():
 
-	#Seleccion de arma
-	print("Ármate con una de estas poderosas\n")
-	arma = eleccion_arma()
-	print ("\n"+arma+" elegida")
+			partida.close() 	
+	except Exception as e:
+		print("Hubo un error al leer el archivo de texto")
 
-	#Mostrar información final			
+
+nombre, vida, armadura = (cargar_partida(jugador))
+
+print("Este es el nombre"+nombre)		

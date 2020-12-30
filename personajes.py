@@ -88,16 +88,8 @@ class Urbus(Personaje):
 
 	#retorna daño_total
 	def ataque(self):
-		import random
-		frases = ["Golpe crítico", "Brutal", "Criticazo", "Buen golpe"]
-		ataque = random.randint(13,20)
-		frase_random = random.choice(frases)
-		if ataque > 16:
-			daño_total = print("Daño:",str(ataque),"¡"+frase_random+"!")
-			return daño_total
-		else:
-			daño_total = print("Daño:",str(ataque))
-			return daño_total	
+		ataque = random.randint(10,20)
+		return ataque
 
 class Enemigo(Personaje):
 
@@ -105,7 +97,7 @@ class Enemigo(Personaje):
 		super(Enemigo, self).__init__()
 		self._vida = 100
 		self._armadura = 0
-		self._habilidad = "CUERPO A CUERPO"
+		self._habilidad = "cuerpo a cuerpo"
 
 	def get_enemyVida(self):
 		return self._vida
@@ -120,7 +112,8 @@ class Enemigo(Personaje):
 		self._armadura = armadura	
 
 	def info (self):
-		return print("Enemigo\nVida: "+str(self._vida)+"\nArmadura: "+str(self._armadura)+"\nHabilidad: "+ str(self._habilidad))	
+		informacion = "Enemigo Vida:",self._vida,"Armadura:",self._armadura,"Habilidad:", self._habilidad
+		return print(informacion)			
 
 	def ataque(self):
 		ataque = random.randint(10,16)

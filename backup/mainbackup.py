@@ -10,21 +10,22 @@ partida.write("Segunda línea")
 guerreros = ['Eleven','Hall','Urbus','Catris','Kale']
 armas = ['Espada','Hacha']
 
+partida.write("nombre: "+jugador+"vida: "+str(vida)+" armadura: "+str(armadura))
+
 eleven = personajes.Eleven()
 urbus = personajes.Urbus()
 enemigo = personajes.Enemigo()
 
-def crear_partida(jugador,vida,armadura):
+def crear_partida(jugador, vida, armadura):
 	try:
 		if (path.exists(f"{jugador}.txt")):
 			print("El archivo ya existe")
 		else:
-			with open(f"{jugador}.txt", "w") as partida:
-				partida.write("nombre: "+jugador+"\nvida: "+str(vida)+"\narmadura: "+str(armadura))
-				print("Partida creada")
+			partida = open(f"{jugador}.txt", "w")
+			print("Partida creada")
+			partida.close()
 	except Exception as e:
 		print("Hubo un error al crear el archivo de texto")
-
 
 def cargar_partida(jugador):
 	try:
